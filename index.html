@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoShop Dashboard</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <header>
+        <h1>🛒 EcoShop Dashboard</h1>
+    </header>
+
+    <main>
+        <main>
+
+    <!-- PANEL SUPERIOR -->
+
+    <section class="top-panel">
+
+        <input 
+            type="text" 
+            id="searchInput"
+            placeholder="Buscar productos..."
+        >
+
+        <div class="filters">
+
+            <button>Todas</button>
+            <button>Tecnología</button>
+            <button>Hogar</button>
+            <button>Deportes</button>
+
+        </div>
+
+    </section>
+
+    <!-- ESTADISTICAS -->
+
+    <section class="stats">
+
+        <div class="card-stat">
+            <h3>Total Productos</h3>
+            <p id="totalProducts">0</p>
+        </div>
+
+        <div class="card-stat">
+            <h3>Valor Inventario</h3>
+            <p id="inventoryValue">$0</p>
+        </div>
+
+    </section>
+
+    <!-- GRID PRODUCTOS -->
+
+    <section id="productsGrid">
+
+    </section>
+
+    <!-- PANEL DETALLE -->
+
+    <section id="detailPanel">
+
+        <h2>Detalle Producto</h2>
+
+        <p>
+            Selecciona un producto para ver información
+        </p>
+
+    </section>
+
+</main>
+
+    </main>
+
+    <script src="js/inventory.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/storage.js"></script>
+    <script src="js/darkmode.js"></script>
+    <script src="js/app.js"></script>
+
+</body>
+</html>
