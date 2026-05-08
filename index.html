@@ -1,85 +1,396 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoShop Dashboard</title>
 
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>EcoShop Premium</title>
+
+    <!-- ICONOS -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    >
+
+    <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
+
 </head>
+
 <body>
 
+    <!-- =========================
+         HEADER
+    ========================== -->
+
     <header>
-        <h1>🛒 EcoShop Dashboard</h1>
+
+        <div class="logo">
+
+            <h1>
+                🛒 EcoShop
+            </h1>
+
+            <p>
+                Dashboard Premium
+            </p>
+
+        </div>
+
+        <!-- BUSCADOR -->
+        <div class="search-box">
+
+            <i class="fa-solid fa-magnifying-glass"></i>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Buscar productos..."
+            >
+
+        </div>
+
+        <!-- BOTONES -->
+        <div class="header-actions">
+
+            <!-- AÑADIR PRODUCTO -->
+            <button id="addProductBtn">
+
+                <i class="fa-solid fa-plus"></i>
+
+            </button>
+
+            <!-- DARK MODE -->
+            <button id="themeBtn">
+
+                <i class="fa-solid fa-moon"></i>
+
+            </button>
+
+            <!-- CARRITO -->
+            <button id="cartBtn">
+
+                <i class="fa-solid fa-cart-shopping"></i>
+
+                <span id="cartCount">
+                    0
+                </span>
+
+            </button>
+
+        </div>
+
     </header>
 
-    <main>
+    <!-- =========================
+         DASHBOARD
+    ========================== -->
+
+    <section class="dashboard">
+
+        <div class="card-dashboard">
+
+            <h3>Total Productos</h3>
+
+            <p id="totalProducts">
+                0
+            </p>
+
+        </div>
+
+        <div class="card-dashboard">
+
+            <h3>Valor Inventario</h3>
+
+            <p id="inventoryValue">
+                S/0
+            </p>
+
+        </div>
+
+        <div class="card-dashboard">
+
+            <h3>Productos Agotados</h3>
+
+            <p id="soldOut">
+                0
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- =========================
+         CONTENIDO PRINCIPAL
+    ========================== -->
+
+    <section class="page-layout">
+
+        <aside class="sidebar">
+
+            <section class="filters">
+
+                <div id="categoryGroup" class="filter-group">
+
+                    <h4>Categoría</h4>
+
+                    <button
+                        class="filter-btn active"
+                        data-category="todos"
+                    >
+                        Todos
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-category="tecnologia"
+                    >
+                        Tecnología
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-category="hogar"
+                    >
+                        Hogar
+                    </button>
+
+                    <button
+                        class="filter-btn"
+                        data-category="deportes"
+                    >
+                        Deportes
+                    </button>
+
+                </div>
+
+                <div class="filter-group">
+
+                    <h4>Precio</h4>
+
+                    <button
+                        class="price-filter-btn active"
+                        data-price="todos"
+                    >
+                        Todos
+                    </button>
+
+                    <button
+                        class="price-filter-btn"
+                        data-price="bajo"
+                    >
+                        Bajo (< S/500)
+                    </button>
+
+                    <button
+                        class="price-filter-btn"
+                        data-price="medio"
+                    >
+                        Medio (S/500 - S/2000)
+                    </button>
+
+                    <button
+                        class="price-filter-btn"
+                        data-price="alto"
+                    >
+                        Alto (> S/2000)
+                    </button>
+
+                </div>
+
+                <div class="category-manager">
+
+                    <h4>Agregar categoría</h4>
+
+                    <div class="category-input">
+
+                        <input
+                            type="text"
+                            id="newCategoryInput"
+                            placeholder="Nueva categoría"
+                        >
+
+                        <button
+                            type="button"
+                            id="addCategoryBtn"
+                        >
+                            Añadir
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </aside>
+
         <main>
 
-    <!-- PANEL SUPERIOR -->
+            <!-- GRID -->
+            <section
+                id="productsContainer"
+            >
+            </section>
 
-    <section class="top-panel">
+            <!-- DETALLE -->
+            <aside id="productDetail">
 
-        <input 
-            type="text" 
-            id="searchInput"
-            placeholder="Buscar productos..."
-        >
+                <div class="detail-placeholder">
 
-        <div class="filters">
+                    <i class="fa-solid fa-box-open"></i>
 
-            <button>Todas</button>
-            <button>Tecnología</button>
-            <button>Hogar</button>
-            <button>Deportes</button>
+                    <h2>
+                        Selecciona un producto
+                    </h2>
+
+                </div>
+
+            </aside>
+
+        </main>
+
+    </section>
+
+    <!-- =========================
+         MODAL CARRITO
+    ========================== -->
+
+    <div id="cartModal">
+
+        <div class="cart-content">
+
+            <div class="cart-header">
+
+                <h2>
+                    🛒 Carrito
+                </h2>
+
+                <button id="closeCart">
+                    ✖
+                </button>
+
+            </div>
+
+            <div id="cartItems">
+
+            </div>
+
+            <div class="cart-footer">
+
+                <h3>
+                    Total:
+                    <span id="cartTotal">
+                        S/0
+                    </span>
+                </h3>
+
+                <button id="checkoutBtn">
+                    Finalizar Compra
+                </button>
+
+            </div>
 
         </div>
 
-    </section>
+    </div>
 
-    <!-- ESTADISTICAS -->
+    <!-- TOAST -->
+    <div id="toast">
 
-    <section class="stats">
+    </div>
 
-        <div class="card-stat">
-            <h3>Total Productos</h3>
-            <p id="totalProducts">0</p>
+    <!-- MODAL AÑADIR PRODUCTO -->
+    <div id="addProductModal">
+
+        <div class="add-product-content">
+
+            <div class="modal-header">
+
+                <h2>
+                    ➕ Añadir Producto
+                </h2>
+
+                <button id="closeAddModal">
+                    ✖
+                </button>
+
+            </div>
+
+            <form id="addProductForm">
+
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Nombre del producto"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="productPrice"
+                    placeholder="Precio (S/)"
+                    required
+                >
+
+                <select id="productCategory" required>
+
+                    <option value="">
+                        Seleccionar categoría
+                    </option>
+
+                    <option value="tecnologia">
+                        Tecnología
+                    </option>
+
+                    <option value="hogar">
+                        Hogar
+                    </option>
+
+                    <option value="deportes">
+                        Deportes
+                    </option>
+
+                </select>
+
+                <input
+                    type="number"
+                    id="productStock"
+                    placeholder="Stock inicial"
+                    required
+                >
+
+                <input
+                    type="url"
+                    id="productImage"
+                    placeholder="URL de imagen"
+                    required
+                >
+
+                <textarea
+                    id="productDescription"
+                    placeholder="Descripción"
+                    required
+                ></textarea>
+
+                <button type="submit">
+                    Añadir Producto
+                </button>
+
+            </form>
+
         </div>
 
-        <div class="card-stat">
-            <h3>Valor Inventario</h3>
-            <p id="inventoryValue">$0</p>
-        </div>
+    </div>
 
-    </section>
-
-    <!-- GRID PRODUCTOS -->
-
-    <section id="productsGrid">
-
-    </section>
-
-    <!-- PANEL DETALLE -->
-
-    <section id="detailPanel">
-
-        <h2>Detalle Producto</h2>
-
-        <p>
-            Selecciona un producto para ver información
-        </p>
-
-    </section>
-
-</main>
-
-    </main>
-
-    <script src="js/inventory.js"></script>
-    <script src="js/filters.js"></script>
-    <script src="js/storage.js"></script>
-    <script src="js/darkmode.js"></script>
-    <script src="js/app.js"></script>
+    <!-- JS -->
+    <script src="script/script.js"></script>
 
 </body>
 </html>
